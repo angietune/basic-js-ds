@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+import { NotImplementedError } from "../extensions/index.js";
 
 // import { ListNode } from '../extensions/list-node.js';
 
@@ -14,20 +14,34 @@ import { NotImplementedError } from '../extensions/index.js';
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 export default class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
 
   getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
+    throw new NotImplementedError("Not implemented");
     // remove line with error and write your code here
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  enqueue(value) {
+    const temp = new ListNode(value);
+    if (this.last == null) {
+      this.first = temp;
+      this.last = temp;
+      this.size++;
+      return;
+    }
+    this.last.next = temp;
+    this.last = temp;
+    this.size++;
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (this.first == null) return;
+    this.first = this.first.next;
+    this.size--;
+    if (this.first == null) this.last = null;
   }
-
 }
